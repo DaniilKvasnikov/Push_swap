@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:29:07 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/01/30 21:29:00 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/01/30 21:47:47 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void    ft_print_stack(t_stack *stack)
 int main(int argc, char **argv)
 {
 	t_stack *stack;
+	char	*line;
 
 	if (argc > 2)
 	{
@@ -38,15 +39,11 @@ int main(int argc, char **argv)
 			ft_printf("error\n");
 			return (0);
 		}
-		ft_print_stack(stack);
-		ft_sa(stack);
-		ft_pb(stack);
-		ft_pb(stack);
-		ft_pb(stack);
-		ft_sa(stack);
-		ft_pa(stack);
-		ft_pa(stack);
-		ft_pa(stack);
+		while (get_next_line(0, &line) > 0)
+		{
+			ft_printf("%s\n", line);
+			free(line);
+		}
 		ft_print_stack(stack);
 		free(stack->a);
 		free(stack->b);

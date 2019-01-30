@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 14:56:04 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/01/14 15:28:47 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/01/30 21:44:34 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdlib.h>
 # include <string.h>
 
+# define BUFF_SIZE 20
+# define FD_MAX 11000
+
 typedef struct	s_list
 {
 	void			*content;
@@ -24,6 +27,13 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+typedef struct	s_vect
+{
+	void		*content;
+	size_t		size;
+}				t_vect;
+
+int				get_next_line(const int fd, char **line);
 void			*ft_memset(void *str, int c, size_t n);
 void			ft_bzero(void *str, size_t n);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
