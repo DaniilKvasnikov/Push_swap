@@ -40,7 +40,7 @@ int	body_checker(t_stack *stack, int print)
 	error = 0;
 	while (get_next_line(0, &line) > 0)
 	{
-		if (error || !ft_start_fun(stack, line, print))
+		if (ft_start_fun(stack, line, print) == 0)
 			error = 1;
 		if (!error)
 			ft_print_stack(stack, print);
@@ -61,6 +61,8 @@ int main(int argc, char **argv)
 	t_stack *stack;
 	int		print;
 
+	if (argc < 2)
+		EXIT();
 	if ((print = ft_will_print(*(argv + 1))) == 1)
 	{
 		argc--;

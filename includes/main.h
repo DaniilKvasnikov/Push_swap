@@ -30,7 +30,7 @@ typedef struct	s_stack
 	int			flag_c;
 }				t_stack;
 
-void			ft_stack_push_a(t_stack *stack, int n);
+int				ft_stack_push_a(t_stack *stack, int n);
 void			ft_stack_push_b(t_stack *stack, int n);
 void			ft_print_stack(t_stack *stack, int print);
 t_stack			*ft_init_stack(int size, char **strs);

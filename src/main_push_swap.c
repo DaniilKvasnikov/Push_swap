@@ -48,7 +48,6 @@ int	sort1(t_stack *stack)
 {
 	int min;
 
-	ft_putstr("\x1b[35m");
 	while (stack->size_a > 3)
 	{
 		min = get_min(stack);
@@ -78,7 +77,6 @@ int	sort1(t_stack *stack)
 		ft_puts("pa");
 		ft_pa(stack);
 	}
-	ft_putstr("\x1b[0m");
 	return (0);
 }
 
@@ -89,12 +87,9 @@ int main(int argc, char **argv)
 	if (argc > 1)
 	{
 		if (!ft_check_arg(argc - 1, argv + 1))
-			return (0);
+			EXIT();
 		if ((stack = ft_init_stack(argc - 1, (argv + 1))) == NULL)
-		{
-			ft_printf("error\n");
-			return (0);
-		}
+			EXIT();
 		sort1(stack);
 		free(stack->a);
 		free(stack->b);

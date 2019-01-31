@@ -12,15 +12,20 @@
 
 #include "main.h"
 
-void	ft_stack_push_a(t_stack *stack, int n)
+int	ft_stack_push_a(t_stack *stack, int n)
 {
 	int index;
 
+	index = -1;
+	while (++index < stack->size_a)
+		if (stack->a[index] == n)
+			return (1);
 	index = stack->size_a;
 	while (--index >= 0)
 		stack->a[index + 1] = stack->a[index];
 	stack->a[0] = n;
 	stack->size_a++;
+	return (0);
 }
 
 void	ft_stack_push_b(t_stack *stack, int n)
@@ -48,8 +53,8 @@ t_stack	*ft_malloc_stack(int size)
 	stack->size_a = 0;
 	if ((stack->b = (int *)malloc(sizeof(int) * size)) == NULL)
 	{
-		free(stack);
 		free(stack->a);
+		free(stack);
 		return (NULL);
 	}
 	stack->size_b = 0;
@@ -66,7 +71,13 @@ t_stack	*ft_init_stack(int size, char **strs)
 	index = size;
 	while (--index >= 0)
 	{
-		ft_stack_push_a(stack, ft_atoi(strs[index]));
+		if (ft_stack_push_a(stack, ft_atoi(strs[index])))
+		{
+			free(stack->a);
+			free(stack->b);
+			free(stack);
+			return (NULL);
+		}
 	}
 	return (stack);
 }
