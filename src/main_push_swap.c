@@ -27,6 +27,11 @@ int get_min(t_stack *stack)
 
 void	ft_sort3(t_stack *stack)
 {
+	if (stack->a[0] > stack->a[1])
+	{
+		ft_puts("sa");
+		ft_sa(stack);
+	}
 	if (stack->size_a > 2 && stack->a[1] > stack->a[2])
 	{
 		ft_puts("rra");

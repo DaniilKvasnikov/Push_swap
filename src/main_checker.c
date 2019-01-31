@@ -35,15 +35,18 @@ int	ft_is_sort(t_stack *stack)
 int	body_checker(t_stack *stack, int print)
 {
 	char	*line;
+	int		error;
 
+	error = 0;
 	while (get_next_line(0, &line) > 0)
 	{
-		if (!ft_start_fun(stack, line, print))
-			return (1);
-		ft_print_stack(stack, print);
+		if (error || !ft_start_fun(stack, line, print))
+			error = 1;
+		if (!error)
+			ft_print_stack(stack, print);
 		free(line);
 	}
-	return (0);
+	return (error);
 }
 
 int	ft_will_print(char *str)
@@ -68,9 +71,8 @@ int main(int argc, char **argv)
 	if ((stack = ft_init_stack(argc - 1, (argv + 1))) == NULL)
 		EXIT();
 	ft_print_stack(stack, print);
-	if (body_checker(stack, print))
-		return (0);
-	ft_is_sort(stack);
+	if (!body_checker(stack, print))
+		ft_is_sort(stack);
 	free(stack->a);
 	free(stack->b);
 	free(stack);
