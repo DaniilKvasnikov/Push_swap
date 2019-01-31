@@ -15,17 +15,27 @@
 
 # include "ft_printf.h"
 
+# define EXIT(){\
+	ft_puts("\x1b[31mError\033[0m");\
+	return (0);\
+	}
+
 typedef struct	s_stack
 {
 	int			*a;
 	int			size_a;
 	int			*b;
 	int			size_b;
+	int			flag_v;
+	int			flag_c;
 }				t_stack;
 
 void			ft_stack_push_a(t_stack *stack, int n);
 void			ft_stack_push_b(t_stack *stack, int n);
+void			ft_print_stack(t_stack *stack, int print);
 t_stack			*ft_init_stack(int size, char **strs);
+int				ft_start_fun(t_stack *stack, char *str, int print);
+int				ft_check_arg(int argc, char **argv);
 void			ft_sa(t_stack *stack);
 void			ft_sb(t_stack *stack);
 void			ft_ss(t_stack *stack);

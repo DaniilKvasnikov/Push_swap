@@ -12,13 +12,88 @@
 
 #include "main.h"
 
+int get_min(t_stack *stack)
+{
+	int index;
+	int min;
+
+	index = 0;
+	min = 0;
+	while (++index < stack->size_a)
+		if (stack->a[index] < stack->a[min])
+			min = index;
+	return (min);
+}
+
+void	ft_sort3(t_stack *stack)
+{
+	if (stack->size_a > 2 && stack->a[1] > stack->a[2])
+	{
+		ft_puts("rra");
+		ft_rra(stack);
+	}
+	if (stack->a[0] > stack->a[1])
+	{
+		ft_puts("sa");
+		ft_sa(stack);
+	}
+}
+
+int	sort1(t_stack *stack)
+{
+	int min;
+
+	ft_putstr("\x1b[35m");
+	while (stack->size_a > 3)
+	{
+		min = get_min(stack);
+		if (min < (stack->size_a / 2.0))
+		{
+			while (--min >= 0)
+			{
+				ft_puts("ra");
+				ft_ra(stack);
+			}
+		}
+		else
+		{
+			min = stack->size_a - min;
+			while (--min >= 0)
+			{
+				ft_puts("rra");
+				ft_rra(stack);
+			}
+		}
+		ft_puts("pb");
+		ft_pb(stack);
+	}
+	ft_sort3(stack);
+	while (stack->size_b > 0)
+	{
+		ft_puts("pa");
+		ft_pa(stack);
+	}
+	ft_putstr("\x1b[0m");
+	return (0);
+}
+
 int main(int argc, char **argv)
 {
-    if (argc <= 1)
-        ft_printf("push_swap Argv=%s\n", argv[0]);
-    else
-    {
-        ft_printf("push_swap Args=%s\n", argv[1]);
-    }
-    return (0);
+	t_stack *stack;
+
+	if (argc > 1)
+	{
+		if (!ft_check_arg(argc - 1, argv + 1))
+			return (0);
+		if ((stack = ft_init_stack(argc - 1, (argv + 1))) == NULL)
+		{
+			ft_printf("error\n");
+			return (0);
+		}
+		sort1(stack);
+		free(stack->a);
+		free(stack->b);
+		free(stack);
+	}
+	return (0);
 }

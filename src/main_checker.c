@@ -12,42 +12,67 @@
 
 #include "main.h"
 
-void    ft_print_stack(t_stack *stack)
+int	ft_is_sort(t_stack *stack)
 {
-	int index;
+	int	index;
 
+	if (stack->size_b != 0)
+	{
+		ft_puts("\x1b[31mKO\033[0m");
+		return (0);
+	}
 	index = -1;
-	ft_printf("a-> ");
-	while (++index < stack->size_a)
-		ft_printf("%d ", stack->a[index]);
-	index = -1;
-	ft_printf("\nb-> ");
-	while (++index < stack->size_b)
-		ft_printf("%d ", stack->b[index]);
-	ft_printf("\n");
+	while (++index < (stack->size_a - 1))
+		if (stack->a[index] > stack->a[index + 1])
+		{
+			ft_puts("\x1b[31mKO\033[0m");
+			return (0);
+		}
+	ft_puts("\x1b[32mOK\033[0m");
+	return (1);
+}
+
+int	body_checker(t_stack *stack, int print)
+{
+	char	*line;
+
+	while (get_next_line(0, &line) > 0)
+	{
+		if (!ft_start_fun(stack, line, print))
+			return (1);
+		ft_print_stack(stack, print);
+		free(line);
+	}
+	return (0);
+}
+
+int	ft_will_print(char *str)
+{
+	if (!ft_strcmp(str, "-v"))
+		return (1);
+	return (0);
 }
 
 int main(int argc, char **argv)
 {
 	t_stack *stack;
-	char	*line;
+	int		print;
 
-	if (argc > 2)
+	if ((print = ft_will_print(*(argv + 1))) == 1)
 	{
-		if ((stack = ft_init_stack(argc - 1, (argv + 1))) == NULL)
-		{
-			ft_printf("error\n");
-			return (0);
-		}
-		while (get_next_line(0, &line) > 0)
-		{
-			ft_printf("%s\n", line);
-			free(line);
-		}
-		ft_print_stack(stack);
-		free(stack->a);
-		free(stack->b);
-		free(stack);
+		argc--;
+		argv++;
 	}
+	if (!ft_check_arg(argc - 1, argv + 1))
+		EXIT();
+	if ((stack = ft_init_stack(argc - 1, (argv + 1))) == NULL)
+		EXIT();
+	ft_print_stack(stack, print);
+	if (body_checker(stack, print))
+		return (0);
+	ft_is_sort(stack);
+	free(stack->a);
+	free(stack->b);
+	free(stack);
 	return (0);
 }

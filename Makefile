@@ -50,6 +50,6 @@ fclean: clean
 	/bin/rm -f $(NAME1)
 	/bin/rm -f $(NAME2)
 
-re: fclean all
+re: fclean all	
 
 .PHONY: clean fclean all re
