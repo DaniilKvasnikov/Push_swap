@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:44:56 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/02/02 01:47:22 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/02 02:18:37 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ typedef struct	s_stack
 	int			size_a;
 	int			*b;
 	int			size_b;
-	int			flag_v;
-	int			flag_c;
 }				t_stack;
 
 int				sort1(t_stack *stack);
