@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_stack.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/02 00:10:47 by rrhaenys          #+#    #+#             */
+/*   Updated: 2019/02/02 01:02:46 by rrhaenys         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
-void    ft_print_stack(t_stack *stack, int print)
+void	ft_print_stack(t_stack *stack, int print)
 {
 	int index;
 

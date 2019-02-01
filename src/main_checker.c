@@ -6,13 +6,13 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:29:07 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/01/30 21:47:47 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/02 01:18:23 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	ft_is_sort(t_stack *stack)
+static int	ft_is_sort(t_stack *stack)
 {
 	int	index;
 
@@ -32,7 +32,7 @@ int	ft_is_sort(t_stack *stack)
 	return (1);
 }
 
-int	body_checker(t_stack *stack, int print)
+static int	body_checker(t_stack *stack, int print)
 {
 	char	*line;
 	int		error;
@@ -40,7 +40,7 @@ int	body_checker(t_stack *stack, int print)
 	error = 0;
 	while (get_next_line(0, &line) > 0)
 	{
-		if (ft_start_fun(stack, line, print) == 0)
+		if ((error == 1) || (ft_start_fun(stack, line, print) == 0))
 			error = 1;
 		if (!error)
 			ft_print_stack(stack, print);
@@ -49,34 +49,38 @@ int	body_checker(t_stack *stack, int print)
 	return (error);
 }
 
-int	ft_will_print(char *str)
+static int	ft_will_print(char *str)
 {
 	if (!ft_strcmp(str, "-v"))
 		return (1);
 	return (0);
 }
 
-int main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_stack *stack;
 	int		print;
+	int		clear;
 
 	if (argc < 2)
-		EXIT();
-	if ((print = ft_will_print(*(argv + 1))) == 1)
+		NOARGCH();
+	print = ft_will_print(*(++argv));
+	argc = argc - 1 - (print == 1);
+	argv += (print == 1);
+	if (argc < 1)
+		NOARGCH();
+	if (argc == 1)
 	{
-		argc--;
-		argv++;
+		argv = ft_strsplit(argv[0], ' ');
+		argc = -1;
+		while (argv[++argc] != NULL)
+			clear = 1;
 	}
-	if (!ft_check_arg(argc - 1, argv + 1))
-		EXIT();
-	if ((stack = ft_init_stack(argc - 1, (argv + 1))) == NULL)
+	if (!ft_check_arg(argc, argv) ||
+	((stack = ft_init_stack(argc, argv)) == NULL))
 		EXIT();
 	ft_print_stack(stack, print);
 	if (!body_checker(stack, print))
 		ft_is_sort(stack);
-	free(stack->a);
-	free(stack->b);
-	free(stack);
-	return (0);
+	return (ft_free_stack(stack, clear, argv));
 }

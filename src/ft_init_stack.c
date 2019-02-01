@@ -6,13 +6,13 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 20:06:14 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/01/30 21:09:56 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/02 02:11:30 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	ft_stack_push_a(t_stack *stack, int n)
+int		ft_stack_push_a(t_stack *stack, int n)
 {
 	int index;
 
@@ -65,13 +65,21 @@ t_stack	*ft_init_stack(int size, char **strs)
 {
 	t_stack	*stack;
 	int		index;
+	int		n;
+	char	*n_str;
+	int		flag_error;
 
 	if ((stack = ft_malloc_stack(size)) == NULL)
 		return (NULL);
 	index = size;
 	while (--index >= 0)
 	{
-		if (ft_stack_push_a(stack, ft_atoi(strs[index])))
+		n = ft_atoi(strs[index]);
+		n_str = ft_itoa(n);
+		flag_error = ((ft_strcmp(strs[index], n_str) != 0) ||
+		ft_stack_push_a(stack, n));
+		free(n_str);
+		if (flag_error)
 		{
 			free(stack->a);
 			free(stack->b);

@@ -6,94 +6,49 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:30:27 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/02/01 22:01:52 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/02 01:47:48 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int get_min(t_stack *stack)
+static int	ft_is_sort(t_stack *stack)
 {
-	int index;
-	int min;
+	int	index;
 
-	index = 0;
-	min = 0;
-	while (++index < stack->size_a)
-		if (stack->a[index] < stack->a[min])
-			min = index;
-	return (min);
+	if (stack->size_b != 0)
+		return (0);
+	index = -1;
+	while (++index < (stack->size_a - 1))
+		if (stack->a[index] > stack->a[index + 1])
+			return (0);
+	return (1);
 }
 
-void	ft_sort3(t_stack *stack)
-{
-	if (stack->a[0] > stack->a[1])
-	{
-		ft_puts("sa");
-		ft_sa(stack);
-	}
-	if (stack->size_a > 2 && stack->a[1] > stack->a[2])
-	{
-		ft_puts("rra");
-		ft_rra(stack);
-	}
-	if (stack->a[0] > stack->a[1])
-	{
-		ft_puts("sa");
-		ft_sa(stack);
-	}
-}
-
-int	sort1(t_stack *stack)
-{
-	int min;
-
-	while (stack->size_a > 4)
-	{
-		min = get_min(stack);
-		if (min < (stack->size_a / 2.0))
-		{
-			while (--min >= 0)
-			{
-				ft_puts("ra");
-				ft_ra(stack);
-			}
-		}
-		else
-		{
-			min = stack->size_a - min;
-			while (--min >= 0)
-			{
-				ft_puts("rra");
-				ft_rra(stack);
-			}
-		}
-		ft_puts("pb");
-		ft_pb(stack);
-	}
-	ft_sort3(stack);
-	while (stack->size_b > 0)
-	{
-		ft_puts("pa");
-		ft_pa(stack);
-	}
-	return (0);
-}
-
-int main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_stack *stack;
+	int		clear;
 
-	if (argc > 1)
+	clear = 0;
+	if (argc < 2)
+		NOARGP();
+	++argv;
+	--argc;
+	if (argc == 1)
 	{
-		if (!ft_check_arg(argc - 1, argv + 1))
-			EXIT();
-		if ((stack = ft_init_stack(argc - 1, (argv + 1))) == NULL)
-			EXIT();
-		sort1(stack);
-		free(stack->a);
-		free(stack->b);
-		free(stack);
+		clear = 1;
+		argv = ft_strsplit(argv[0], ' ');
+		argc = 0;
+		while (argv[argc] != NULL)
+			++argc;
 	}
-	return (0);
+	if (!ft_check_arg(argc, argv))
+		EXIT();
+	if ((stack = ft_init_stack(argc, argv)) == NULL)
+		EXIT();
+	if (ft_is_sort(stack) == 1)
+		return (ft_free_stack(stack, clear, argv));
+	sort1(stack);
+	return (ft_free_stack(stack, clear, argv));
 }

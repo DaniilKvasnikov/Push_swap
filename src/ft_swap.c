@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 20:00:29 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/01/30 20:43:13 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/02 01:02:13 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_swap(int *a, int *b)
 {
 	int	temp;
+
 	temp = *a;
 	*a = *b;
 	*b = temp;

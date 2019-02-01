@@ -1,10 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_start_fun.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/02 00:10:58 by rrhaenys          #+#    #+#             */
+/*   Updated: 2019/02/02 01:18:53 by rrhaenys         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "main.h"
 
-int	ft_start_fun(t_stack *stack, char *str, int print)
+static int	ft_fun(t_stack *stack, char *str)
 {
-	if (print)
-		ft_printf("\x1b[35m%s\x1b[0m\n", str);
 	if (ft_strcmp(str, "sa") == 0)
 		ft_sa(stack);
 	else if (ft_strcmp(str, "sb") == 0)
@@ -28,6 +37,15 @@ int	ft_start_fun(t_stack *stack, char *str, int print)
 	else if (ft_strcmp(str, "rrr") == 0)
 		ft_rrr(stack);
 	else
+		return (0);
+	return (1);
+}
+
+int			ft_start_fun(t_stack *stack, char *str, int print)
+{
+	if (print)
+		ft_printf("\x1b[35m%s\x1b[0m\n", str);
+	if (ft_fun(stack, str) == 0)
 		EXIT();
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:44:56 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/01/30 21:02:14 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/02 01:47:22 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 # include "ft_printf.h"
 
-# define EXIT(){\
-	ft_puts("\x1b[31mError\033[0m");\
-	return (0);\
-	}
+# define EXIT(){ft_puts("\x1b[31mError\033[0m");return (0);}
+
+# define NOARGCH(){ft_puts("\x1b[31m./checker [-v] [0-9]\033[0m");return (0);}
+
+# define NOARGP(){ft_puts("\x1b[31m./push_swap [0-9]\033[0m");return (0);}
 
 typedef struct	s_stack
 {
@@ -30,6 +31,8 @@ typedef struct	s_stack
 	int			flag_c;
 }				t_stack;
 
+int				sort1(t_stack *stack);
+int				ft_free_stack(t_stack *stack, int clear, char **argv);
 int				ft_stack_push_a(t_stack *stack, int n);
 void			ft_stack_push_b(t_stack *stack, int n);
 void			ft_print_stack(t_stack *stack, int print);
