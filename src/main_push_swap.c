@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:30:27 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/01/30 19:45:44 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/01 22:01:52 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	sort1(t_stack *stack)
 {
 	int min;
 
-	while (stack->size_a > 3)
+	while (stack->size_a > 4)
 	{
 		min = get_min(stack);
 		if (min < (stack->size_a / 2.0))
