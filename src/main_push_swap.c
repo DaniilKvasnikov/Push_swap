@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:30:27 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/02/02 01:47:48 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/02 06:17:34 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ int			main(int argc, char **argv)
 		EXIT();
 	if (ft_is_sort(stack) == 1)
 		return (ft_free_stack(stack, clear, argv));
-	sort1(stack);
+	sort2(stack);
 	return (ft_free_stack(stack, clear, argv));
 }
