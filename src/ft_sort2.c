@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 00:27:10 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/02/02 07:21:15 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/02 07:38:24 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 
 static void	ft_to_b(t_stack *stack, int size);
 
+static void	ft_2_a(t_stack *stack)
+{
+}
+
 static void	ft_to_a(t_stack *stack, int size)
 {
-	if (size <= 3)
+	if (size <= 2 || stack->size_b == 0)
 		return ;
 	int		index;
 	float	mid;
@@ -64,8 +68,6 @@ static void	ft_to_a(t_stack *stack, int size)
 		ft_pa(stack);
 	}
 	size = start - temp;
-	ft_to_a(stack, size);
-	ft_to_a(stack, temp);
 }
 
 static void	ft_to_b(t_stack *stack, int size)
@@ -75,7 +77,7 @@ static void	ft_to_b(t_stack *stack, int size)
 	int		temp;
 	int		start;
 
-	if (size <= 3)
+	if (size <= 3 || stack->size_a == 0)
 		return ;
 	start = size;
 	if (size <= 1)
