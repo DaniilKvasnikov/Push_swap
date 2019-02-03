@@ -40,7 +40,7 @@ static int	ft_to_b(t_stack *stack, int size)
 
 static int ft_cmp(t_stack *stack, int p1, int p2, int p3)
 {
-	return ((stack->a[p1] < stack->a[p2]) && (stack->a[p2] < stack->a[p3]));
+	return ((stack->a[p1] > stack->a[p2]) && (stack->a[p2] > stack->a[p3]));
 }
 
 static void	ft_sort_a(t_stack *stack)
@@ -53,27 +53,27 @@ static void	ft_sort_a(t_stack *stack)
 			ft_sa(stack, 1);
 		return ;
 	}
-	if (ft_cmp(stack, 2, 1, 0))
+	if (ft_cmp(stack, 0, 1, 2) == 1)
 		ft_sa(stack, 1);
-	if (ft_cmp(stack, 2, 0, 1))
+	if (ft_cmp(stack, 0, 2, 1) == 1)
 		ft_sa(stack, 1);
-	if (ft_cmp(stack, 0, 2, 1))
+	if (ft_cmp(stack, 1, 2, 0) == 1)
 	{
 		ft_ra(stack, 1);
 		ft_sa(stack, 1);
 		ft_rra(stack, 1);
 	}
-	if (ft_cmp(stack, 1, 2, 0))
+	if (ft_cmp(stack, 1, 0, 2) == 1)
 	{
 		ft_ra(stack, 1);
 		ft_sa(stack, 1);
 		ft_rra(stack, 1);
 	}
-	if (ft_cmp(stack, 1, 0, 2))
+	if (ft_cmp(stack, 2, 0, 1) == 1)
 		ft_sa(stack, 1);
 }
 
-static void	ft_resort(t_stack *stack, int size)
+static int	ft_resort(t_stack *stack, int size)
 {
 	int		index;
 	float	mid;
@@ -96,8 +96,7 @@ static void	ft_resort(t_stack *stack, int size)
 		else
 			ft_rb(stack, 1);
 	}
-	ft_printf("size=%d len=%d res=%d size_b=%d\n", size, len, (size - len), stack->size_b);
-	if ((size - len) > stack->size_b)
+	if ((size - len) < stack->size_b)
 	{
 		index = -1;
 		while (++index < (size - len))
@@ -105,6 +104,7 @@ static void	ft_resort(t_stack *stack, int size)
 			ft_rrb(stack, 1);
 		}
 	}
+	return (len);
 }
 
 int			sort2(t_stack *stack)
@@ -112,6 +112,7 @@ int			sort2(t_stack *stack)
 	int	*map;
 	int	index;
 	int	size;
+	int	muve;
 
 	size = stack->size_a;
 	map = (int *)malloc(sizeof(int) * size);
@@ -126,8 +127,18 @@ int			sort2(t_stack *stack)
 	{
 		if (map[index] > 3)
 		{
-			ft_resort(stack, map[index]);
-			break ;
+			muve = ft_resort(stack, map[index]);
+			map[index] = map[index] - muve;
+			if (muve > 3)
+			{
+				map[index + 1] = muve;
+				index = -1;
+				while (++index < muve)
+					ft_pb(stack, 1);
+			}
+			else
+				ft_sort_a(stack);
+			index = size - 1;
 		}
 		while (map[index] > 0)
 		{
@@ -137,7 +148,7 @@ int			sort2(t_stack *stack)
 		ft_sort_a(stack);
 	}
 	index = -1;
-	while(++index < size)
-		ft_printf("answer %d %d\n", index, map[index]);
+//	while(++index < size)
+//		ft_printf("answer %d %d\n", index, map[index]);
 	return (0);
 }
