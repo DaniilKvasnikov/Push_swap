@@ -107,6 +107,33 @@ static int	ft_resort(t_stack *stack, int size)
 	return (len);
 }
 
+static void	ft_clearstr(t_stack *stack)
+{
+	char	*ptr;
+
+	ptr = stack->str;
+	while (*ptr != '\0')
+	{
+		if (ft_strncmp(ptr, "pa\npb\n", 6) == 0)
+		{
+			ft_strcpy(ptr, (ptr + 6));
+			ptr = stack->str;
+		}
+		else if (ft_strncmp(ptr, "pb\npa\n", 6) == 0)
+		{
+			ft_strcpy(ptr, (ptr + 6));
+			ptr = stack->str;
+		}
+		else if (ft_strncmp(ptr, "\nrb\nrrb", 7) == 0)
+		{
+			ft_strcpy(ptr, (ptr + 7));
+			ptr = stack->str;
+		}
+		else
+			ptr++;
+	}
+}
+
 int			sort2(t_stack *stack)
 {
 	int	*map;
@@ -114,6 +141,7 @@ int			sort2(t_stack *stack)
 	int	size;
 	int	muve;
 
+	stack->str = ft_strdup("");
 	size = stack->size_a;
 	map = (int *)malloc(sizeof(int) * size);
 	index = -1;
@@ -147,7 +175,9 @@ int			sort2(t_stack *stack)
 		}
 		ft_sort_a(stack);
 	}
-	index = -1;
+	ft_clearstr(stack);
+	ft_printf("%s", stack->str);
+//	index = -1;
 //	while(++index < size)
 //		ft_printf("answer %d %d\n", index, map[index]);
 	return (0);

@@ -27,6 +27,7 @@ typedef struct	s_stack
 	int			size_a;
 	int			*b;
 	int			size_b;
+	char		*str;
 }				t_stack;
 
 int				sort1(t_stack *stack);

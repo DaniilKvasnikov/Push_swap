@@ -17,7 +17,7 @@ void	ft_pa(t_stack *stack, int print)
 	int	index;
 
 	if (print)
-		ft_puts("pa");
+		stack->str = ft_strjoin(stack->str, "pa\n");
 	if (stack->size_b == 0)
 		return ;
 	ft_stack_push_a(stack, stack->b[0]);
@@ -32,7 +32,7 @@ void	ft_pb(t_stack *stack, int print)
 	int	index;
 
 	if (print)
-		ft_puts("pb");
+		stack->str = ft_strjoin(stack->str, "pb\n");
 	if (stack->size_a == 0)
 		return ;
 	ft_stack_push_b(stack, stack->a[0]);

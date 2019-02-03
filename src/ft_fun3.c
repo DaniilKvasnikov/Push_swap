@@ -18,7 +18,7 @@ void	ft_rra(t_stack *stack, int print)
 	int	temp;
 
 	if (print)
-		ft_puts("rra");
+		stack->str = ft_strjoin(stack->str, "rra\n");
 	if (stack->size_a <= 1)
 		return ;
 	temp = stack->a[stack->size_a - 1];
@@ -34,7 +34,7 @@ void	ft_rrb(t_stack *stack, int print)
 	int	temp;
 
 	if (print)
-		ft_puts("rrb");
+		stack->str = ft_strjoin(stack->str, "rrb\n");
 	if (stack->size_b <= 1)
 		return ;
 	temp = stack->b[stack->size_b - 1];
@@ -47,7 +47,7 @@ void	ft_rrb(t_stack *stack, int print)
 void	ft_rrr(t_stack *stack, int print)
 {
 	if (print)
-		ft_puts("rrr");
+		stack->str = ft_strjoin(stack->str, "rrr\n");
 	ft_rra(stack, 0);
 	ft_rrb(stack, 0);
 }

@@ -23,5 +23,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	ft_strncpy(res, s1, ft_strlen(s1));
 	ft_strncpy(res + ft_strlen(s1), s2, ft_strlen(s2));
+	free((char *)s1);
 	return (res);
 }

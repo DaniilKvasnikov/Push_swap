@@ -51,6 +51,7 @@ int			main(int argc, char **argv)
 		return (ft_free_stack(stack, clear, argv));
 	if (stack->size_a >= 10)
 		sort2(stack);
-//	sort1(stack);
+	else
+		sort1(stack);
 	return (ft_free_stack(stack, clear, argv));
 }

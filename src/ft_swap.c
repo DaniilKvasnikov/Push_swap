@@ -24,7 +24,7 @@ void	ft_swap(int *a, int *b)
 void	ft_sa(t_stack *stack, int print)
 {
 	if (print)
-		ft_puts("sa");
+		stack->str = ft_strjoin(stack->str, "sa\n");
 	if (stack->size_a <= 1)
 		return ;
 	ft_swap(&(stack->a[0]), &(stack->a[1]));
@@ -33,7 +33,7 @@ void	ft_sa(t_stack *stack, int print)
 void	ft_sb(t_stack *stack, int print)
 {
 	if (print)
-		ft_puts("sb");
+		stack->str = ft_strjoin(stack->str, "sb\n");
 	if (stack->size_b <= 1)
 		return ;
 	ft_swap(&(stack->b[0]), &(stack->b[1]));
@@ -42,7 +42,7 @@ void	ft_sb(t_stack *stack, int print)
 void	ft_ss(t_stack *stack, int print)
 {
 	if (print)
-		ft_puts("ss");
+		stack->str = ft_strjoin(stack->str, "ss\n");
 	ft_sa(stack, 0);
 	ft_sb(stack, 0);
 }
