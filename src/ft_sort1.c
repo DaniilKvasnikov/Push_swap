@@ -46,21 +46,12 @@ static void	ft_sort3(t_stack *stack)
 	if (stack->size_a > 2)
 	{
 		if (max == 0)
-		{
-			ft_puts("ra");
-			ft_ra(stack);
-		}
+			ft_ra(stack, 1);
 		else if (max == 1)
-		{
-			ft_puts("rra");
-			ft_rra(stack);
-		}
+			ft_rra(stack, 1);
 	}
 	if (stack->a[0] > stack->a[1])
-	{
-		ft_puts("sa");
-		ft_sa(stack);
-	}
+		ft_sa(stack, 1);
 }
 
 static void	ft_sort(t_stack *stack)
@@ -73,22 +64,15 @@ static void	ft_sort(t_stack *stack)
 		if (min < (stack->size_a / 2.0))
 		{
 			while (--min >= 0)
-			{
-				ft_puts("ra");
-				ft_ra(stack);
-			}
+				ft_ra(stack, 1);
 		}
 		else
 		{
 			min = stack->size_a - min;
 			while (--min >= 0)
-			{
-				ft_puts("rra");
-				ft_rra(stack);
-			}
+				ft_rra(stack, 1);
 		}
-		ft_puts("pb");
-		ft_pb(stack);
+		ft_pb(stack, 1);
 	}
 }
 
@@ -97,9 +81,6 @@ int			sort1(t_stack *stack)
 	ft_sort(stack);
 	ft_sort3(stack);
 	while (stack->size_b > 0)
-	{
-		ft_puts("pa");
-		ft_pa(stack);
-	}
+		ft_pa(stack, 1);
 	return (0);
 }

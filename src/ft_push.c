@@ -12,10 +12,12 @@
 
 #include "main.h"
 
-void	ft_pa(t_stack *stack)
+void	ft_pa(t_stack *stack, int print)
 {
 	int	index;
 
+	if (print)
+		ft_puts("pa");
 	if (stack->size_b == 0)
 		return ;
 	ft_stack_push_a(stack, stack->b[0]);
@@ -25,10 +27,12 @@ void	ft_pa(t_stack *stack)
 		stack->b[index] = stack->b[index + 1];
 }
 
-void	ft_pb(t_stack *stack)
+void	ft_pb(t_stack *stack, int print)
 {
 	int	index;
 
+	if (print)
+		ft_puts("pb");
 	if (stack->size_a == 0)
 		return ;
 	ft_stack_push_b(stack, stack->a[0]);

@@ -15,27 +15,27 @@
 static int	ft_fun(t_stack *stack, char *str)
 {
 	if (ft_strcmp(str, "sa") == 0)
-		ft_sa(stack);
+		ft_sa(stack, 0);
 	else if (ft_strcmp(str, "sb") == 0)
-		ft_sb(stack);
+		ft_sb(stack, 0);
 	else if (ft_strcmp(str, "ss") == 0)
-		ft_ss(stack);
+		ft_ss(stack, 0);
 	else if (ft_strcmp(str, "pa") == 0)
-		ft_pa(stack);
+		ft_pa(stack, 0);
 	else if (ft_strcmp(str, "pb") == 0)
-		ft_pb(stack);
+		ft_pb(stack, 0);
 	else if (ft_strcmp(str, "ra") == 0)
-		ft_ra(stack);
+		ft_ra(stack, 0);
 	else if (ft_strcmp(str, "rb") == 0)
-		ft_rb(stack);
+		ft_rb(stack, 0);
 	else if (ft_strcmp(str, "rr") == 0)
-		ft_rr(stack);
+		ft_rr(stack, 0);
 	else if (ft_strcmp(str, "rra") == 0)
-		ft_rra(stack);
+		ft_rra(stack, 0);
 	else if (ft_strcmp(str, "rrb") == 0)
-		ft_rrb(stack);
+		ft_rrb(stack, 0);
 	else if (ft_strcmp(str, "rrr") == 0)
-		ft_rrr(stack);
+		ft_rrr(stack, 0);
 	else
 		return (0);
 	return (1);

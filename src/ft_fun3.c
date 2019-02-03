@@ -12,11 +12,13 @@
 
 #include "main.h"
 
-void	ft_rra(t_stack *stack)
+void	ft_rra(t_stack *stack, int print)
 {
 	int	index;
 	int	temp;
 
+	if (print)
+		ft_puts("rra");
 	if (stack->size_a <= 1)
 		return ;
 	temp = stack->a[stack->size_a - 1];
@@ -26,11 +28,13 @@ void	ft_rra(t_stack *stack)
 	stack->a[0] = temp;
 }
 
-void	ft_rrb(t_stack *stack)
+void	ft_rrb(t_stack *stack, int print)
 {
 	int	index;
 	int	temp;
 
+	if (print)
+		ft_puts("rrb");
 	if (stack->size_b <= 1)
 		return ;
 	temp = stack->b[stack->size_b - 1];
@@ -40,8 +44,10 @@ void	ft_rrb(t_stack *stack)
 	stack->b[0] = temp;
 }
 
-void	ft_rrr(t_stack *stack)
+void	ft_rrr(t_stack *stack, int print)
 {
-	ft_rra(stack);
-	ft_rrb(stack);
+	if (print)
+		ft_puts("rrr");
+	ft_rra(stack, 0);
+	ft_rrb(stack, 0);
 }
