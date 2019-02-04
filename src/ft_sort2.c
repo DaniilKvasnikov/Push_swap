@@ -141,7 +141,6 @@ int			sort2(t_stack *stack)
 	int	size;
 	int	muve;
 
-	stack->str = ft_strdup("");
 	size = stack->size_a;
 	map = (int *)malloc(sizeof(int) * size);
 	index = -1;
@@ -176,7 +175,7 @@ int			sort2(t_stack *stack)
 		ft_sort_a(stack);
 	}
 	ft_clearstr(stack);
-	ft_printf("%s", stack->str);
+	free(map);
 //	index = -1;
 //	while(++index < size)
 //		ft_printf("answer %d %d\n", index, map[index]);

@@ -37,11 +37,10 @@ int			main(int argc, char **argv)
 	--argc;
 	if (argc == 1)
 	{
-		clear = 1;
 		argv = ft_strsplit(argv[0], ' ');
-		argc = 0;
-		while (argv[argc] != NULL)
-			++argc;
+		argc = -1;
+		while (argv[++argc] != NULL)
+			clear = 1;
 	}
 	if (!ft_check_arg(argc, argv))
 		EXIT();
@@ -49,9 +48,12 @@ int			main(int argc, char **argv)
 		EXIT();
 	if (ft_is_sort(stack) == 1)
 		return (ft_free_stack(stack, clear, argv));
+	stack->str = ft_strdup("");
 	if (stack->size_a >= 10)
 		sort2(stack);
 	else
 		sort1(stack);
+	ft_printf("%s", stack->str);
+	free(stack->str);
 	return (ft_free_stack(stack, clear, argv));
 }

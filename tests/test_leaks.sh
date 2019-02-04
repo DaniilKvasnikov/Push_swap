@@ -2,6 +2,8 @@
 make
 valgrind --leak-check=full ./push_swap 1 2 3
 sleep 2
+valgrind --leak-check=full ./push_swap 10 9 8 7 6 5 4 3 2 1 0
+sleep 2
 valgrind --leak-check=full ./push_swap 3 2 1
 sleep 2
 valgrind --leak-check=full ./push_swap
