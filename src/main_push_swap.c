@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:30:27 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/02/02 07:38:19 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/05 05:42:32 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,31 @@ static int	ft_is_sort(t_stack *stack)
 	return (1);
 }
 
+static char	**ft_oneparam(char *str, int *argc)
+{
+	char	**argv;
+
+	argv = ft_strsplit(str, ' ');
+	*argc = 0;
+	while (argv[++(*argc)] != NULL)
+		;
+	return (argv);
+}
+
 int			main(int argc, char **argv)
 {
 	t_stack *stack;
 	int		clear;
 
-	clear = 0;
 	if (argc < 2)
 		NOARGP();
 	++argv;
 	--argc;
+	clear = (argc == 1);
 	if (argc == 1)
-	{
-		argv = ft_strsplit(argv[0], ' ');
-		argc = -1;
-		while (argv[++argc] != NULL)
-			clear = 1;
-	}
-	if (!ft_check_arg(argc, argv))
-		EXIT();
-	if ((stack = ft_init_stack(argc, argv)) == NULL)
+		argv = ft_oneparam(argv[0], &argc);
+	if (!ft_check_arg(argc, argv) ||
+		((stack = ft_init_stack(argc, argv)) == NULL))
 		EXIT();
 	if (ft_is_sort(stack) == 1)
 		return (ft_free_stack(stack, clear, argv));

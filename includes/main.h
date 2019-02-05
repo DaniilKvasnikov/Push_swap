@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:44:56 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/02/02 06:17:15 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/05 05:16:01 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct	s_stack
 
 int				sort1(t_stack *stack);
 int				sort2(t_stack *stack);
+int				ft_cmp_stack(t_stack *stack, int p1, int p2, int p3);
+void			ft_clearstr_stack(t_stack *stack);
 int				ft_free_stack(t_stack *stack, int clear, char **argv);
 int				ft_stack_push_a(t_stack *stack, int n);
 void			ft_stack_push_b(t_stack *stack, int n);
