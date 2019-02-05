@@ -6,13 +6,13 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 06:19:33 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/02/05 11:15:50 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/05 11:40:59 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int			ft_close(t_data *data)
+int				ft_close(t_data *data)
 {
 	free(data->stack->a);
 	free(data->stack->b);
@@ -30,7 +30,7 @@ int				key_release(int key, t_data *data)
 	return (1);
 }
 
-void		ft_draw_px(t_data *env, int x, int y, int color)
+void			ft_draw_px(t_data *env, int x, int y, int color)
 {
 	float z;
 
@@ -45,7 +45,7 @@ void		ft_draw_px(t_data *env, int x, int y, int color)
 		env->img.data[y * WIN_W + x] = color;
 }
 
-void		clearwin(t_data *data)
+void			clearwin(t_data *data)
 {
 	int index;
 	int size;
@@ -60,7 +60,7 @@ void		clearwin(t_data *data)
 		data->img.img_ptr, 0, 0);
 }
 
-int			ft_draw(t_data *data)
+int				ft_draw(t_data *data)
 {
 	char	*line;
 

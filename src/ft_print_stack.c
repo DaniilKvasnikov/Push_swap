@@ -6,13 +6,13 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 00:10:47 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/02/05 11:20:51 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/05 11:40:37 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	ft_draw_line(t_data *data, int *p, int size, int color)
+void			ft_draw_line(t_data *data, int *p, int size, int color)
 {
 	int	index;
 	int	height;
@@ -30,51 +30,59 @@ void	ft_draw_line(t_data *data, int *p, int size, int color)
 	}
 }
 
-void	ft_draw_stack(t_data *data, int height)
+static double	ft_getmax(t_data *data)
 {
-	int		pos[3];
-	int 	index;
-	int		color;
-	int		par;
 	double	max;
+	int		index;
 
-	pos[2] = height;
-	index = -1;
 	max = 0;
+	index = -1;
 	while (++index < data->stack->size_a)
 		if (abs(data->stack->a[index]) > max)
 			max = abs(data->stack->a[index]);
+	index = -1;
+	while (++index < data->stack->size_b)
+		if (abs(data->stack->b[index]) > max)
+			max = abs(data->stack->b[index]);
 	max = 1 / max * (WIN_H / 2.0);
+	return (max);
+}
+
+void			ft_draw_stack(t_data *data, int height, double max)
+{
+	int		pos[3];
+	int		index;
+	int		color;
+
+	pos[2] = height;
+	index = -1;
 	index = -1;
 	while (++index < data->stack->size_a)
 	{
-		par = data->stack->a[index];
-		pos[1] = index * height;
 		pos[0] = 0;
-		color = 0x00ff00 * (par < 0) + 0xff0000;
-		ft_draw_line(data, pos, abs(par) * max, color);
+		pos[1] = index * height;
+		color = 0x00ff00 * (data->stack->a[index] < 0) + 0xff0000;
+		ft_draw_line(data, pos, abs(data->stack->a[index]) * max, color);
 	}
-
 	index = -1;
 	while (++index < data->stack->size_b)
 	{
-		par = data->stack->b[index];
+		pos[0] = WIN_H - abs(data->stack->b[index]) * max;
 		pos[1] = index * height;
-		pos[0] = WIN_H - abs(par) * max;
-		color = 0x00ff00 * (par < 0) + 0x0000ff;
-		ft_draw_line(data, pos, abs(par) * max, color);
+		color = 0x00ff00 * (data->stack->a[index] < 0) + 0xff0000;
+		ft_draw_line(data, pos, abs(data->stack->b[index]) * max, color);
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
 		data->img.img_ptr, 0, 0);
 }
 
-void	ft_print_stack(t_stack *stack, int print, t_data *data)
+void			ft_print_stack(t_stack *stack, int print, t_data *data)
 {
 	int index;
 
 	if (data != NULL && data->stack->size_a <= WIN_H)
 		ft_draw_stack(data,
-		(WIN_H / (data->stack->size_a + data->stack->size_b)));
+		(WIN_H / (data->stack->size_a + data->stack->size_b)), ft_getmax(data));
 	if (print != 1)
 		return ;
 	index = -1;
