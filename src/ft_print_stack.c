@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 00:10:47 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/02/05 10:00:19 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/05 11:20:51 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	ft_draw_line(t_data *data, int *p, int size, int color)
 		p[1] < 0 || p[1] >= WIN_H ||
 		(p[0] + size - 1) < 0 || (p[0] + size - 1) >= WIN_W)
 		return ;
-//	height = p[1] - 1;
-//	while (++height < (p[1] + p[2]))
-//	{
+	height = p[1] - 1;
+	while (++height < (p[1] + p[2]))
+	{
 		index = p[0] - 1;
 		while (++index < (p[0] + size))
-			data->img.data[p[1] * WIN_W + index] = color;
-//	}
+			data->img.data[(height) * WIN_W + index] = color;
+	}
 }
 
 void	ft_draw_stack(t_data *data, int height)
@@ -51,7 +51,7 @@ void	ft_draw_stack(t_data *data, int height)
 		par = data->stack->a[index];
 		pos[1] = index * height;
 		pos[0] = 0;
-		color = 0x00ffff * (par < 0) + 0xff0000;
+		color = 0x00ff00 * (par < 0) + 0xff0000;
 		ft_draw_line(data, pos, abs(par) * max, color);
 	}
 
@@ -60,8 +60,8 @@ void	ft_draw_stack(t_data *data, int height)
 	{
 		par = data->stack->b[index];
 		pos[1] = index * height;
-		pos[0] = WIN_H - par * max;
-		color = 0x00ff00;
+		pos[0] = WIN_H - abs(par) * max;
+		color = 0x00ff00 * (par < 0) + 0x0000ff;
 		ft_draw_line(data, pos, abs(par) * max, color);
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
@@ -73,7 +73,8 @@ void	ft_print_stack(t_stack *stack, int print, t_data *data)
 	int index;
 
 	if (data != NULL && data->stack->size_a <= WIN_H)
-		ft_draw_stack(data, (WIN_H / data->stack->size_a));
+		ft_draw_stack(data,
+		(WIN_H / (data->stack->size_a + data->stack->size_b)));
 	if (print != 1)
 		return ;
 	index = -1;

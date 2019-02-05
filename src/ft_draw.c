@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 06:19:33 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/02/05 09:47:54 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/05 11:15:50 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int				key_release(int key, t_data *data)
 {
 	if (key == 53)
 		ft_close(data);
+	if (key == 49)
+		ft_draw(data);
 	return (1);
 }
 
@@ -62,14 +64,13 @@ int			ft_draw(t_data *data)
 {
 	char	*line;
 
+	clearwin(data);
+	ft_print_stack(data->stack, 1, data);
 	if (get_next_line(0, &line) > 0)
 	{
-		clearwin(data);
 		if (ft_start_fun(data->stack, line, 1) == 0)
 			ft_close(data);
-		ft_print_stack(data->stack, 1, data);
 		free(line);
-		usleep(200);
 	}
 	return (1);
 }
