@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 06:19:33 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/02/05 11:40:59 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/05 11:57:32 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ int				ft_draw(t_data *data)
 	char	*line;
 
 	clearwin(data);
-	ft_print_stack(data->stack, 1, data);
+	ft_print_stack(data->stack, 0, data);
 	if (get_next_line(0, &line) > 0)
 	{
-		if (ft_start_fun(data->stack, line, 1) == 0)
+		if (ft_start_fun(data->stack, line, 0) == 0)
 			ft_close(data);
 		free(line);
 	}

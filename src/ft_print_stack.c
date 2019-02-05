@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 00:10:47 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/02/05 11:40:37 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/05 11:55:02 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void			ft_draw_stack(t_data *data, int height, double max)
 	{
 		pos[0] = WIN_H - abs(data->stack->b[index]) * max;
 		pos[1] = index * height;
-		color = 0x00ff00 * (data->stack->a[index] < 0) + 0xff0000;
+		color = 0x00ff00 * (data->stack->a[index] < 0) + 0x0000ff;
 		ft_draw_line(data, pos, abs(data->stack->b[index]) * max, color);
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
