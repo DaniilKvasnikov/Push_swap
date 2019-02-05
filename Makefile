@@ -6,10 +6,12 @@
 #    By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/30 19:01:08 by rrhaenys          #+#    #+#              #
-#    Updated: 2019/02/02 06:22:34 by rrhaenys         ###   ########.fr        #
+#    Updated: 2019/02/05 05:53:49 by rrhaenys         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+ARG=
+V=
 NAME1 = checker
 NAME2 = push_swap
 COMMAND = gcc
@@ -50,6 +52,16 @@ fclean: clean
 	/bin/rm -f $(NAME1)
 	/bin/rm -f $(NAME2)
 
-re: fclean all	
+re: fclean all
+
+t_c:
+	./$(NAME1) $(V) $(ARG)
+
+t_p:
+	./$(NAME2) $(ARG)
+
+t_pc:
+	@./$(NAME2) $(ARG) | ./$(NAME1) $(V) $(ARG)
+	@./$(NAME2) $(ARG) | wc -l
 
 .PHONY: clean fclean all re
