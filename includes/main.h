@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:44:56 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/02/05 07:15:04 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/05 12:04:01 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "ft_printf.h"
 # include <mlx.h>
 
-# define WIN_W 1024
-# define WIN_H 1024
+# define WIN_W 1300
+# define WIN_H 1300
 # define WIN_S (WIN_W * WIN_H)
 
 # define EXIT(){ft_puts("\x1b[31mError\033[0m");return (0);}
