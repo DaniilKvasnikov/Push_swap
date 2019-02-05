@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 00:10:58 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/02/02 01:18:53 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/05 09:42:03 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	ft_fun(t_stack *stack, char *str)
 
 int			ft_start_fun(t_stack *stack, char *str, int print)
 {
-	if (print)
+	if (print == 1)
 		ft_printf("\x1b[35m%s\x1b[0m\n", str);
 	if (ft_fun(stack, str) == 0)
 		EXIT();
