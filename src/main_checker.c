@@ -6,7 +6,7 @@
 /*   By: rrhaenys <rrhaenys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:29:07 by rrhaenys          #+#    #+#             */
-/*   Updated: 2019/02/05 11:39:23 by rrhaenys         ###   ########.fr       */
+/*   Updated: 2019/02/05 13:50:23 by rrhaenys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int			main(int argc, char **argv)
 	argv += (print > 0);
 	if (argc < 1)
 		NOARGCH();
+	clear = 0;
 	if (argc == 1)
 	{
 		argv = ft_strsplit(argv[0], ' ');
